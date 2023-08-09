@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  redis:
+    image: redis
+    container_name: 'task_manager_redis'
+    ports:
+      - '63791:6379'
+    volumes:
+      - task_manager_redisdata:/data
+
+  postgresql:
+    image: 'postgres:14'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    container_name: 'task_manager_postgresql'
+    ports:
+      - '54321:5432'
+    volumes:
+      - task_manager_dbdata:/var/lib/postgresql/data
+
+volumes:
+  task_manager_dbdata:
+  task_manager_redisdata:
