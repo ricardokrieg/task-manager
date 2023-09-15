@@ -1,7 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+ActiveRecord::Base.connection.execute('TRUNCATE tasks RESTART IDENTITY')
+
+def add_task(title:, tags:, parent: nil)
+  Task.create(title:, priority: (Task.maximum(:priority) || 0) + 1, tags:, parent:)
+end
+
+add_task(title: 'JS Knowledge (blocked: needs refinement)', tags: %w[toptal sp-3 blocked])
+add_task(title: 'Ashish: GQL', tags: %w[toptal sp-2])
+add_task(title: 'SOA doc', tags: %w[toptal])
+add_task(title: 'refine CRT-6252 (blocked: talk with Ashish)', tags: %w[toptal sp-1 blocked])
+add_task(title: 'PA: delete any existing data (events, profiles) on staging and production (blocked after deploying last changes to production)', tags: %w[toptal sp-1 blocked])
+add_task(title: 'Vote on groominator tickets', tags: %w[toptal sp-1])
+
+add_task(title: 'Fix order reference for GH, because of leading/trailing zeros', tags: %w[lula sp-1])
+add_task(title: 'Remove old inventory data for Par Mar stores, including SI with external_id', tags: %w[lula sp-1])
+add_task(title: 'ticket: Remove SI with empty external_id', tags: %w[lula])
+add_task(title: 'Inventory diagrams (blocked: not priority)', tags: %w[lula blocked])
+add_task(title: 'Run SQL query to backfill archived StoreItems with quantity > 0 (blocked: prod deploy)', tags: %w[lula blocked])
+add_task(title: 'GH leading/trailing zeros (blocked: talk with Filippo)', tags: %w[lula blocked])
+add_task(title: 'OneSchema embeddable / popup (blocked: not time for this yet)', tags: %w[lula blocked])
+add_task(title: 'Inventory consumer handle GoUPC retry (blocked: not priority)', tags: %w[lula blocked])
+add_task(title: 'Include Environment on OneSchema imports (blocked: not priority)', tags: %w[lula blocked])
+add_task(title: 'mention Token in the inventory docs', tags: %w[lula sp-1])
+add_task(title: 'LSM uses auth token for inventory API (blocked: needs refinement)', tags: %w[lula sp-2])
+add_task(title: 'check images DD, UE not showing. check menu sync logs', tags: %w[lula sp-2])
+add_task(title: 'GoUPC sending invalid image', tags: %w[lula sp-2])
+
+add_task(title: 'edit task', tags: %w[task-manager])
+add_task(title: 'FE controls filter', tags: %w[task-manager])
+add_task(title: 'add sidebar filter and filter tasks by difficulty (sp-1, sp-2 or sp-3)', tags: %w[task-manager])
+add_task(title: 'add sidebar filter and filter tasks by company', tags: %w[task-manager])
+add_task(title: 'priority line', tags: %w[task-manager])
+add_task(title: 'reorder task', tags: %w[task-manager])
+add_task(title: 'recurrent tasks, after completing they recreate again in a future date, keeping same tags (example: read emails)', tags: %w[task-manager])
+
+add_task(title: 'comprar bicicleta ergonometrica', tags: %w[buy])
+add_task(title: 'comprar pilhas AAA', tags: %w[buy])
+add_task(title: 'Apply to Perry Street', tags: %w[job-seeker])
+add_task(title: 'kafka - 4 consumers', tags: %w[study sp-3])
+add_task(title: 'mockup for main screen', tags: %w[startup])
