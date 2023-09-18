@@ -4,7 +4,7 @@ services:
     image: redis
     container_name: 'task_manager_redis'
     ports:
-      - '63791:6379'
+      - '63794:6379'
     volumes:
       - task_manager_redisdata:/data
 
@@ -15,7 +15,7 @@ services:
       POSTGRES_PASSWORD: postgres
     container_name: 'task_manager_postgresql'
     ports:
-      - '54321:5432'
+      - '54324:5432'
     volumes:
       - task_manager_dbdata:/var/lib/postgresql/data
 
