@@ -21,7 +21,7 @@ module Types
     end
 
     def filters
-      OpenStruct.new(story_points: nil)
+      OpenStruct.new(story_points: nil, only_tickets: nil)
     end
   end
 end
